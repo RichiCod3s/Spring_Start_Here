@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--  We define the “th” prefix to use the Thymeleaf capabilities -->
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+<h1>Products</h1>
+<h2>View products</h2>
+
+<table>
+    <tr>                                  <!-- We define a static header for our table. -->
+        <th>PRODUCT NAME</th>             <!-- We define a static header for our table. -->
+        <th>PRODUCT PRICE</th>            <!--We define a static header for our table. -->
+    </tr>                                 <!-- We define a static header for our table. -->
+    <tr th:each="p: ${products}"> <!-- We use the th:each feature from Thymeleaf to iterate on the collection and display a table row for each product in the list. -->
+        <td th:text="${p.name}"></td>     <!-- We display the name and the price of each product on one row. -->
+        <td th:text="${p.price}"></td>    <!-- We display the name and the price of each product on one row.-->
+    </tr>
+</table>
+
+<h2>Add a product</h2>
+<form action="/products" method="post"> <!--  When submitted, the HTML form makes a POST request for path /products. -->
+    Name: <input
+            type="text"
+            name="name"><br/> <!-- An input component allows the user to set the name of the product.
+                                   The value in the component is sent as a request parameter with the key “name.” -->
+    Price: <input
+            type="number"
+            step="any"
+            name="price"><br/> <!-- An input component allows the user to set the price of the product.
+                                    The value in the component is sent as a request parameter with the key “price.” -->
+    <button type="submit">Add product</button> <!-- The user uses a submit button to submit the form.-->
+
+</form>
+</body>
+
+</html>
